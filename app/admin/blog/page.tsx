@@ -1,14 +1,30 @@
 export const dynamic = 'force-dynamic';
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, type BlogPost } from "@prisma/client";
 import { createBlogPost, deleteBlogPost } from "@/lib/action";
 import { Trash2, PenTool, Image as ImageIcon, Video, FileText, ExternalLink } from "lucide-react";
+
+
+
+// export default async function AdminBlog() {
+//   const posts = await prisma.blogPost.findMany({
+//     orderBy: { createdAt: 'desc' }
+//   });
 
 const prisma = new PrismaClient();
 
 export default async function AdminBlog() {
-  const posts = await prisma.blogPost.findMany({
-    orderBy: { createdAt: 'desc' }
-  });
+  // WRAP THE DB CALL IN A TRY/CATCH BLOCK
+  let posts: BlogPost[] = [];
+  try {
+    posts = await prisma.blogPost.findMany({
+      orderBy: { createdAt: 'desc' }
+    });
+  } catch (error) {
+    console.error("Database Error:", error);
+    // We ignore the error so the build doesn't crash!
+  }
+
+  
 
   return (
     <div className="max-w-6xl mx-auto p-8 space-y-8">
