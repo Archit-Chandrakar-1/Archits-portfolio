@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { PrismaClient } from "@prisma/client";
 import { createBlogPost, deleteBlogPost } from "@/lib/action";
 import { Trash2, PenTool, Image as ImageIcon, Video, FileText, ExternalLink } from "lucide-react";
