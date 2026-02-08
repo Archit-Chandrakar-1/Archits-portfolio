@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import Navbar from '@/components/ui/navbar';
 import ProjectGrid from '@/components/ui/project-grid'; // Import the client component
 import { PrismaClient } from '@prisma/client';
